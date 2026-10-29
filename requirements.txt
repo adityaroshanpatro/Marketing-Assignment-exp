@@ -1,0 +1,10 @@
+pandas>=2.0
+numpy
+statsmodels>=0.14
+matplotlib
+pyyaml
+tabulate
+openai>=1.40
+anthropic
+google-genai
+python-dotenv

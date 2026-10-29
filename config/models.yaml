@@ -1,0 +1,117 @@
+# Study 1B-A model roster.
+#
+# provider: anthropic | openai_compat | google | mock
+#   openai_compat covers OpenAI, OpenRouter, Together, Groq, DeepSeek, Fireworks
+#   and a local vLLM / Ollama server (set base_url).
+# model: the EXACT API model string. Verify each one in the provider's model list
+#   and run `python run.py check` before any real run. FILL_ME = not set yet.
+# temperature: number, or null to leave it out (some reasoning models reject it).
+# price_in / price_out: USD per million tokens, from the provider's pricing page
+#   (used only by `python run.py estimate`; leave 0 if unknown).
+#
+# Simplest setup: one OpenRouter key (OPENROUTER_API_KEY) reaches closed and
+# open-weight models alike. Direct provider keys are cheaper at volume (batch APIs).
+
+defaults:
+  max_tokens: 400
+  temperature: 0
+  max_concurrency: 4
+
+models:
+  # ---------------- closed: Anthropic ----------------
+  - name: claude-haiku-5-5
+    provider: anthropic
+    model: claude-haiku-5-5
+    api_key_env: ANTHROPIC_API_KEY
+    temperature: null         # current Claude API/SDK does not expose temperature
+    family: anthropic
+    openness: closed
+    tier: small
+    enabled: true
+    price_in: 0
+    price_out: 0
+
+  - name: claude-opus-5-5
+    provider: anthropic
+    model: claude-opus-5-5
+    api_key_env: ANTHROPIC_API_KEY
+    temperature: null         # current Claude API/SDK does not expose temperature
+    family: anthropic
+    openness: closed
+    tier: flagship
+    enabled: false
+    price_in: 0
+    price_out: 0
+
+  # ---------------- closed: OpenAI ----------------
+  - name: openai-mini
+    provider: openai_compat
+    model: FILL_ME            # current GPT mini-tier model string
+    api_key_env: OPENAI_API_KEY
+    max_tokens_param: max_completion_tokens
+    temperature: null
+    family: openai
+    openness: closed
+    tier: small
+    enabled: false
+
+  - name: openai-flagship
+    provider: openai_compat
+    model: FILL_ME            # current GPT flagship model string
+    api_key_env: OPENAI_API_KEY
+    max_tokens_param: max_completion_tokens
+    temperature: null
+    family: openai
+    openness: closed
+    tier: flagship
+    enabled: false
+
+  # ---------------- closed: Google ----------------
+  - name: gemini-flash
+    provider: google
+    model: FILL_ME            # current Gemini Flash model string
+    api_key_env: GEMINI_API_KEY
+    family: google
+    openness: closed
+    tier: small
+    enabled: false
+
+  - name: gemini-pro
+    provider: google
+    model: FILL_ME            # current Gemini Pro model string
+    api_key_env: GEMINI_API_KEY
+    family: google
+    openness: closed
+    tier: flagship
+    enabled: false
+
+  # ---------------- open-weight (via OpenRouter) ----------------
+  - name: llama-4
+    provider: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    model: FILL_ME            # e.g. a meta-llama/llama-4-* id from openrouter.ai/models
+    api_key_env: OPENROUTER_API_KEY
+    family: meta
+    openness: open
+    tier: flagship
+    enabled: false
+
+  - name: qwen
+    provider: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    model: FILL_ME            # current Qwen flagship id on openrouter.ai/models
+    api_key_env: OPENROUTER_API_KEY
+    family: alibaba
+    openness: open
+    tier: flagship
+    enabled: false
+
+  - name: deepseek
+    provider: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    model: FILL_ME            # current DeepSeek V-series id on openrouter.ai/models
+    api_key_env: OPENROUTER_API_KEY
+    family: deepseek
+    openness: open
+    tier: flagship
+    enabled: false

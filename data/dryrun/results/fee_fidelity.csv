@@ -1,0 +1,5 @@
+model,fee_display,runs,total_correct,reported_pre_fee_price
+mock-brand-loyal,all_in,531,1.0,0.0
+mock-brand-loyal,partitioned,669,0.5291479820627802,0.47085201793721976
+mock-rational,all_in,584,1.0,0.0
+mock-rational,partitioned,616,0.9431818181818182,0.056818181818181816

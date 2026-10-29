@@ -1,0 +1,55 @@
+# Simulated agents for a dry run. They choose by a multinomial-logit rule with
+# KNOWN planted weights, so the analysis can be checked for whether it recovers
+# them. Their output is NOT a research result.
+
+defaults:
+  max_tokens: 400
+  temperature: 0
+  max_concurrency: 8
+
+models:
+  - name: mock-brand-loyal
+    provider: mock
+    model: mock
+    family: mock
+    openness: closed
+    tier: flagship
+    enabled: true
+    p_headline_error: 0.5        # reports the pre-fee price half the time
+    weights:
+      brand_tier: {high: 1.0, low: 0.3}
+      position: {"1": 0.6, "2": 0.2}
+      price_level: {minus15: 0.6, plus15: -0.6}
+      rating: {high: 1.0}
+      review_volume: {high: 0.3}
+      review_recency: {recent: 0.2}
+      cancellation: {free: 0.5, partial: 0.2}
+      badge: {sponsored: -0.5, bestseller: 0.4, scarcity: 0.3}
+      channel: {ota: -0.3, meta: -0.3, aggregator: -0.3}
+      fee_display: {partitioned: 0.3}
+      brand_copy: {strong: 0.3}
+      info_format: {prose: -0.2, missing_keys: -0.4}
+      persona_priority: 1.0
+
+  - name: mock-rational
+    provider: mock
+    model: mock
+    family: mock
+    openness: open
+    tier: small
+    enabled: true
+    p_headline_error: 0.05
+    weights:
+      brand_tier: {}
+      position: {"1": 0.1}
+      price_level: {minus15: 1.0, plus15: -1.0}
+      rating: {high: 1.2}
+      review_volume: {high: 0.4}
+      review_recency: {recent: 0.3}
+      cancellation: {free: 0.8, partial: 0.3}
+      badge: {}
+      channel: {}
+      fee_display: {}
+      brand_copy: {}
+      info_format: {}
+      persona_priority: 1.5

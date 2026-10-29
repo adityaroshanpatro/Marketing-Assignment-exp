@@ -1,0 +1,49 @@
+model,category,term,label,amce,inr_equivalent
+mock-brand-loyal,flights,brand_tier[high],Brand: real high-equity,0.14264322116497655,1463.811493223692
+mock-brand-loyal,flights,brand_tier[low],Brand: real low-equity,0.011748289446981568,120.56150287240368
+mock-brand-loyal,flights,position[4],Listed 4th,-0.14267190979080388,-1464.105897261037
+mock-brand-loyal,flights,badge[sponsored],Badge: Sponsored,-0.0742066464506646,-761.5121213677467
+mock-brand-loyal,flights,badge[scarcity],Badge: Only 2 left,0.0003287531611825328,3.3736805145197493
+mock-brand-loyal,flights,cancellation[free],Free cancellation,0.12516877090117612,1284.487856775994
+mock-brand-loyal,flights,rating[high],Rating 4.6 (vs 3.6),0.14392674826585972,1476.9831091392066
+mock-brand-loyal,flights,brand_copy[strong],Strong brand copy,0.0038775416296271577,39.791515899216066
+mock-brand-loyal,hotels,brand_tier[high],Brand: real high-equity,0.17291913306617024,3698.323166039271
+mock-brand-loyal,hotels,brand_tier[low],Brand: real low-equity,0.05005972033769676,1070.6566712863728
+mock-brand-loyal,hotels,position[4],Listed 4th,-0.05878323314158457,-1257.2315685796223
+mock-brand-loyal,hotels,badge[sponsored],Badge: Sponsored,-0.04683704740527488,-1001.7314705222517
+mock-brand-loyal,hotels,badge[scarcity],Badge: Only 2 left,0.06546913413182176,1400.2268640081338
+mock-brand-loyal,hotels,cancellation[free],Free cancellation,0.1296985936907799,2773.9400790644368
+mock-brand-loyal,hotels,rating[high],Rating 4.6 (vs 3.6),0.16548284947632041,3539.2789967682206
+mock-brand-loyal,hotels,brand_copy[strong],Strong brand copy,0.03961954920312903,847.3665929720709
+mock-brand-loyal,cabs,brand_tier[high],Brand: real high-equity,0.15192738574798687,147.13871793054864
+mock-brand-loyal,cabs,brand_tier[low],Brand: real low-equity,0.07667599884694802,74.25921344489171
+mock-brand-loyal,cabs,position[4],Listed 4th,-0.07328825469304712,-70.97824912744775
+mock-brand-loyal,cabs,badge[sponsored],Badge: Sponsored,-0.09844981843225001,-95.34673418685155
+mock-brand-loyal,cabs,badge[scarcity],Badge: Only 2 left,0.018464043753602402,17.882067227992245
+mock-brand-loyal,cabs,cancellation[free],Free cancellation,0.09692626615483421,93.87120344105841
+mock-brand-loyal,cabs,rating[high],Rating 4.6 (vs 3.6),0.1486597863790927,143.9741115004263
+mock-brand-loyal,cabs,brand_copy[strong],Strong brand copy,0.07470444429246059,72.34980120792602
+mock-rational,flights,brand_tier[high],Brand: real high-equity,-0.040432819173388757,-272.1971525415246
+mock-rational,flights,brand_tier[low],Brand: real low-equity,-0.052753752258733994,-355.1427143660366
+mock-rational,flights,position[4],Listed 4th,-0.0035304981286586323,-23.767611492857426
+mock-rational,flights,badge[sponsored],Badge: Sponsored,-0.004419024117129789,-29.749243468205094
+mock-rational,flights,badge[scarcity],Badge: Only 2 left,-0.04419002099778876,-297.4909524553975
+mock-rational,flights,cancellation[free],Free cancellation,0.18135713172105508,1220.9115232820413
+mock-rational,flights,rating[high],Rating 4.6 (vs 3.6),0.15352622848545733,1033.5515328519332
+mock-rational,flights,brand_copy[strong],Strong brand copy,-0.02289235743052711,-154.1132830938842
+mock-rational,hotels,brand_tier[high],Brand: real high-equity,0.00011246387528700968,1.737147589326389
+mock-rational,hotels,brand_tier[low],Brand: real low-equity,0.0044436681959674,68.63810690047193
+mock-rational,hotels,position[4],Listed 4th,0.07173797639822324,1108.0842843561632
+mock-rational,hotels,badge[sponsored],Badge: Sponsored,0.013922268238385695,215.04713977307335
+mock-rational,hotels,badge[scarcity],Badge: Only 2 left,0.03419562331798779,528.194893344718
+mock-rational,hotels,cancellation[free],Free cancellation,0.19221253757368123,2968.9671055021536
+mock-rational,hotels,rating[high],Rating 4.6 (vs 3.6),0.14962825445829617,2311.1986925935844
+mock-rational,hotels,brand_copy[strong],Strong brand copy,0.01435702199521476,221.76246448244194
+mock-rational,cabs,brand_tier[high],Brand: real high-equity,-0.004076915425621922,-3.0505095536940523
+mock-rational,cabs,brand_tier[low],Brand: real low-equity,-0.012899909881485525,-9.652223366704002
+mock-rational,cabs,position[4],Listed 4th,-0.09538716615077175,-71.37245472742252
+mock-rational,cabs,badge[sponsored],Badge: Sponsored,-0.003292657521516796,-2.4636967358471358
+mock-rational,cabs,badge[scarcity],Badge: Only 2 left,-0.023755973894068166,-17.775160324820003
+mock-rational,cabs,cancellation[free],Free cancellation,0.09375566650490615,70.1517020904452
+mock-rational,cabs,rating[high],Rating 4.6 (vs 3.6),0.18865648836092258,141.16025475892093
+mock-rational,cabs,brand_copy[strong],Strong brand copy,0.0038688885659093394,2.8948556200877644
