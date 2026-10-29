@@ -28,8 +28,8 @@ models:
     openness: closed
     tier: small
     enabled: true
-    price_in: 0
-    price_out: 0
+    price_in: 0.10            # prompts <=100k tokens
+    price_out: 0.50
 
   - name: claude-opus-5-5
     provider: anthropic
@@ -40,24 +40,26 @@ models:
     openness: closed
     tier: flagship
     enabled: false
-    price_in: 0
-    price_out: 0
+    price_in: 4
+    price_out: 20
 
   # ---------------- closed: OpenAI ----------------
   - name: openai-mini
     provider: openai_compat
-    model: FILL_ME            # current GPT mini-tier model string
+    model: gpt-6-luna         # OpenAI's small/efficient tier (no "mini" name); unconfirmed until run.py check
     api_key_env: OPENAI_API_KEY
     max_tokens_param: max_completion_tokens
     temperature: null
     family: openai
     openness: closed
     tier: small
-    enabled: false
+    enabled: true
+    price_in: 0.10
+    price_out: 0.50
 
   - name: openai-flagship
     provider: openai_compat
-    model: FILL_ME            # current GPT flagship model string
+    model: gpt-6-astra        # unconfirmed until run.py check
     api_key_env: OPENAI_API_KEY
     max_tokens_param: max_completion_tokens
     temperature: null
@@ -65,20 +67,24 @@ models:
     openness: closed
     tier: flagship
     enabled: false
+    price_in: 10
+    price_out: 50
 
   # ---------------- closed: Google ----------------
   - name: gemini-flash
     provider: google
-    model: FILL_ME            # current Gemini Flash model string
+    model: gemini-3.8-flash   # stable; unconfirmed until run.py check
     api_key_env: GEMINI_API_KEY
     family: google
     openness: closed
     tier: small
-    enabled: false
+    enabled: true
+    price_in: 0.75            # rises to 1.50 / 7.50 on 1 Jan 2027
+    price_out: 3.75
 
   - name: gemini-pro
     provider: google
-    model: FILL_ME            # current Gemini Pro model string
+    model: FILL_ME            # no stable Pro as of 29 Oct 2026 (only gemini-3.1-pro-preview); decide
     api_key_env: GEMINI_API_KEY
     family: google
     openness: closed
@@ -89,29 +95,35 @@ models:
   - name: llama-4
     provider: openai_compat
     base_url: https://openrouter.ai/api/v1
-    model: FILL_ME            # e.g. a meta-llama/llama-4-* id from openrouter.ai/models
+    model: meta-llama/llama-4-maverick   # unconfirmed until run.py check
     api_key_env: OPENROUTER_API_KEY
     family: meta
     openness: open
     tier: flagship
     enabled: false
+    price_in: 0.188
+    price_out: 0.652
 
   - name: qwen
     provider: openai_compat
     base_url: https://openrouter.ai/api/v1
-    model: FILL_ME            # current Qwen flagship id on openrouter.ai/models
+    model: qwen/qwen3.8-2.4t-a95b   # largest open-weight Qwen (qwen3.8-max is closed); unconfirmed
     api_key_env: OPENROUTER_API_KEY
     family: alibaba
     openness: open
     tier: flagship
     enabled: false
+    price_in: 2.0
+    price_out: 6.0
 
   - name: deepseek
     provider: openai_compat
     base_url: https://openrouter.ai/api/v1
-    model: FILL_ME            # current DeepSeek V-series id on openrouter.ai/models
+    model: deepseek/deepseek-v4.1-flash   # open weights on HF; unconfirmed until run.py check
     api_key_env: OPENROUTER_API_KEY
     family: deepseek
     openness: open
-    tier: flagship
-    enabled: false
+    tier: small
+    enabled: true             # pilot open-weight model
+    price_in: 0.045
+    price_out: 0.50

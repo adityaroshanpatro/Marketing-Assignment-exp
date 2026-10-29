@@ -1,0 +1,57 @@
+# Study 1B-A pilot roster routed through Poe (one key, all providers).
+#
+# Poe exposes an OpenAI-compatible API, so every model here uses provider: openai_compat
+# with base_url https://api.poe.com/v1 and POE_API_KEY. `model` is the Poe bot name, taken
+# from https://api.poe.com/v1/models on 29 Oct 2026; unconfirmed until
+#   python run.py check --config config/models_poe.yaml
+# Names end in -poe so these runs never pool with direct-API runs by accident: Poe is an
+# intermediary, and parameter handling there is best-effort.
+# price_in / price_out: USD per million tokens, from Poe's model list.
+
+defaults:
+  max_tokens: 400
+  temperature: 0
+  max_concurrency: 4
+  provider: openai_compat
+  base_url: https://api.poe.com/v1
+  api_key_env: POE_API_KEY
+
+models:
+  - name: claude-haiku-5-5-poe
+    model: claude-haiku-5.5
+    temperature: null         # matches the direct-API setting; stability measured by reruns
+    family: anthropic
+    openness: closed
+    tier: small
+    enabled: true
+    price_in: 0.101
+    price_out: 0.505
+
+  - name: openai-mini-poe
+    model: gpt-5.4-mini       # Poe has no GPT-6 bots yet; newest mini tier there
+    max_tokens_param: max_completion_tokens
+    temperature: null
+    family: openai
+    openness: closed
+    tier: small
+    enabled: true
+    price_in: 0.682
+    price_out: 4.091
+
+  - name: gemini-flash-poe
+    model: gemini-3.8-flash
+    family: google
+    openness: closed
+    tier: small
+    enabled: true
+    price_in: 0.758
+    price_out: 3.788
+
+  - name: deepseek-poe
+    model: deepseek-v4.1-flash-1017   # dated snapshot; Poe has no undated v4.1-flash bot
+    family: deepseek
+    openness: open
+    tier: small
+    enabled: true
+    price_in: 0.303
+    price_out: 1.212
