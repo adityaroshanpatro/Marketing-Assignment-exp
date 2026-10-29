@@ -1,5 +1,8 @@
 # Study 1B-A: LLM booking-agent bias experiment
 
+**Start here:** read `HANDOFF.md` (project state and next steps), then `docs/framework.md`
+(full research design). `docs/study1_products.md` is the teammate's Study 1 design.
+
 Marketing research project (IIM Mumbai), targeting publication. Study 1 (a teammate)
 covers products; this repo is Study 1B, experiences and services. It runs a
 randomised conjoint: LLM agents choose 1 of 4 flight, hotel or cab options whose brand,
