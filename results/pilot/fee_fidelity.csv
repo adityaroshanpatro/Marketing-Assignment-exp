@@ -1,0 +1,9 @@
+model,fee_display,runs,total_correct,reported_pre_fee_price
+claude-haiku-5-5-poe,all_in,93,0.967741935483871,0.0
+claude-haiku-5-5-poe,partitioned,87,0.9310344827586207,0.0
+deepseek-poe,all_in,84,0.9761904761904762,0.0
+deepseek-poe,partitioned,80,0.975,0.0
+gemini-flash-poe,all_in,90,0.9333333333333333,0.0
+gemini-flash-poe,partitioned,88,0.9545454545454546,0.0
+openai-mini-poe,all_in,101,0.9603960396039604,0.0
+openai-mini-poe,partitioned,79,0.9746835443037974,0.0

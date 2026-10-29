@@ -1,0 +1,97 @@
+model,category,term,label,amce,inr_equivalent
+claude-haiku-5-5-poe,flights,brand_tier[high],Brand: real high-equity,0.08888113089944327,890.8196255552011
+claude-haiku-5-5-poe,flights,brand_tier[low],Brand: real low-equity,0.055919451946183064,560.4580493052985
+claude-haiku-5-5-poe,flights,position[4],Listed 4th,0.021834276966146038,218.83612679564362
+claude-haiku-5-5-poe,flights,badge[sponsored],Badge: Sponsored,-0.0948998980471307,-951.1432942861132
+claude-haiku-5-5-poe,flights,badge[scarcity],Badge: Only 2 left,-0.04528207349283525,-453.84390753182083
+claude-haiku-5-5-poe,flights,cancellation[free],Free cancellation,0.2605910052523096,2611.7982452827896
+claude-haiku-5-5-poe,flights,rating[high],Rating 4.6 (vs 3.6),0.07615603253825909,763.2811115584783
+claude-haiku-5-5-poe,flights,brand_copy[strong],Strong brand copy,0.08693062066042198,871.2704503457595
+claude-haiku-5-5-poe,hotels,brand_tier[high],Brand: real high-equity,0.0015068019247453518,32.08384506804061
+claude-haiku-5-5-poe,hotels,brand_tier[low],Brand: real low-equity,0.010233676662978065,217.90236071466364
+claude-haiku-5-5-poe,hotels,position[4],Listed 4th,-0.1411280476277846,-3004.9937821854815
+claude-haiku-5-5-poe,hotels,badge[sponsored],Badge: Sponsored,-0.15953882984265436,-3397.0086014279937
+claude-haiku-5-5-poe,hotels,badge[scarcity],Badge: Only 2 left,-0.013832953523807992,-294.54059647970405
+claude-haiku-5-5-poe,hotels,cancellation[free],Free cancellation,0.19934740211998844,4244.639629999802
+claude-haiku-5-5-poe,hotels,rating[high],Rating 4.6 (vs 3.6),0.18483362811494125,3935.6025436493946
+claude-haiku-5-5-poe,hotels,brand_copy[strong],Strong brand copy,0.05268337634626566,1121.770059220305
+claude-haiku-5-5-poe,cabs,brand_tier[high],Brand: real high-equity,0.00940337710203526,6.15669653878236
+claude-haiku-5-5-poe,cabs,brand_tier[low],Brand: real low-equity,-0.12350565534941362,-80.86316570726535
+claude-haiku-5-5-poe,cabs,position[4],Listed 4th,0.0751929170438867,49.23124608124543
+claude-haiku-5-5-poe,cabs,badge[sponsored],Badge: Sponsored,0.033675279065746765,22.04829943720317
+claude-haiku-5-5-poe,cabs,badge[scarcity],Badge: Only 2 left,0.003471000277682726,2.272576667280159
+claude-haiku-5-5-poe,cabs,cancellation[free],Free cancellation,0.24514237879274808,160.5026809671944
+claude-haiku-5-5-poe,cabs,rating[high],Rating 4.6 (vs 3.6),0.14678662181299992,96.10597093463915
+claude-haiku-5-5-poe,cabs,brand_copy[strong],Strong brand copy,-0.005398067024114914,-3.534289883608974
+deepseek-poe,flights,brand_tier[high],Brand: real high-equity,0.01214869574266706,130.84938017409357
+deepseek-poe,flights,brand_tier[low],Brand: real low-equity,-0.11727129388603542,-1263.0883546872801
+deepseek-poe,flights,position[4],Listed 4th,0.04200940082898205,452.4686580677007
+deepseek-poe,flights,badge[sponsored],Badge: Sponsored,0.05301885741974791,571.0476892221219
+deepseek-poe,flights,badge[scarcity],Badge: Only 2 left,-0.1254348680731855,-1351.0153754161167
+deepseek-poe,flights,cancellation[free],Free cancellation,0.32536622128088677,3504.4065046973133
+deepseek-poe,flights,rating[high],Rating 4.6 (vs 3.6),0.03966580907083055,427.2266456384788
+deepseek-poe,flights,brand_copy[strong],Strong brand copy,0.040196022018649274,432.93738505050453
+deepseek-poe,hotels,brand_tier[high],Brand: real high-equity,-0.03257737104688373,-875.165983774088
+deepseek-poe,hotels,brand_tier[low],Brand: real low-equity,-0.02633445550347297,-707.4548656699077
+deepseek-poe,hotels,position[4],Listed 4th,-0.22474422741925312,-6037.580583278305
+deepseek-poe,hotels,badge[sponsored],Badge: Sponsored,-0.11657474919509464,-3131.690857304515
+deepseek-poe,hotels,badge[scarcity],Badge: Only 2 left,0.015876542948366892,426.5110990184764
+deepseek-poe,hotels,cancellation[free],Free cancellation,0.21802335151349356,5857.029428139889
+deepseek-poe,hotels,rating[high],Rating 4.6 (vs 3.6),0.061625195492756045,1655.5134163856162
+deepseek-poe,hotels,brand_copy[strong],Strong brand copy,0.07116187897360043,1911.7090734398291
+deepseek-poe,cabs,brand_tier[high],Brand: real high-equity,-0.025677214496566274,-17.97804504750554
+deepseek-poe,cabs,brand_tier[low],Brand: real low-equity,-0.11718665836937477,-82.04889293630332
+deepseek-poe,cabs,position[4],Listed 4th,-0.028585753539520392,-20.014474892481534
+deepseek-poe,cabs,badge[sponsored],Badge: Sponsored,-0.06595127796344293,-46.176155374092176
+deepseek-poe,cabs,badge[scarcity],Badge: Only 2 left,0.049291531871462554,34.51174116118447
+deepseek-poe,cabs,cancellation[free],Free cancellation,0.18062907126333722,126.46845242873299
+deepseek-poe,cabs,rating[high],Rating 4.6 (vs 3.6),0.07506936985050754,52.56023830157886
+deepseek-poe,cabs,brand_copy[strong],Strong brand copy,0.06012174395313452,42.094574599148494
+gemini-flash-poe,flights,brand_tier[high],Brand: real high-equity,0.04004674416529729,470.55008710542086
+gemini-flash-poe,flights,brand_tier[low],Brand: real low-equity,-0.00045872847510575535,-5.39006924077988
+gemini-flash-poe,flights,position[4],Listed 4th,0.07120347814210978,836.6423673216473
+gemini-flash-poe,flights,badge[sponsored],Badge: Sponsored,-0.16044968085535047,-1885.2871282341778
+gemini-flash-poe,flights,badge[scarcity],Badge: Only 2 left,-0.14159446945960125,-1663.7379973475456
+gemini-flash-poe,flights,cancellation[free],Free cancellation,0.27132657444808306,3188.0929624035807
+gemini-flash-poe,flights,rating[high],Rating 4.6 (vs 3.6),0.11714174036682727,1376.4179156680757
+gemini-flash-poe,flights,brand_copy[strong],Strong brand copy,0.010361836068336221,121.75179196597004
+gemini-flash-poe,hotels,brand_tier[high],Brand: real high-equity,0.0015142965917249729,44.69703392796057
+gemini-flash-poe,hotels,brand_tier[low],Brand: real low-equity,0.03904353250439754,1152.4361254941261
+gemini-flash-poe,hotels,position[4],Listed 4th,-0.08560030667468896,-2526.638330027554
+gemini-flash-poe,hotels,badge[sponsored],Badge: Sponsored,-0.1637951986215438,-4834.6932760936015
+gemini-flash-poe,hotels,badge[scarcity],Badge: Only 2 left,-0.07038856559774212,-2077.637975186148
+gemini-flash-poe,hotels,cancellation[free],Free cancellation,0.171316411525179,5056.694639743408
+gemini-flash-poe,hotels,rating[high],Rating 4.6 (vs 3.6),0.1666828244424436,4919.926452997862
+gemini-flash-poe,hotels,brand_copy[strong],Strong brand copy,0.0912134192544947,2692.3188742432976
+gemini-flash-poe,cabs,brand_tier[high],Brand: real high-equity,-0.006198607049345706,-4.230670251613907
+gemini-flash-poe,cabs,brand_tier[low],Brand: real low-equity,-0.10519285312267822,-71.79617466402901
+gemini-flash-poe,cabs,position[4],Listed 4th,0.12511909388696996,85.39622276465573
+gemini-flash-poe,cabs,badge[sponsored],Badge: Sponsored,0.07136775069945916,48.70988230181006
+gemini-flash-poe,cabs,badge[scarcity],Badge: Only 2 left,0.0649600834740017,44.336524401046574
+gemini-flash-poe,cabs,cancellation[free],Free cancellation,0.17947823283995554,122.4973956960836
+gemini-flash-poe,cabs,rating[high],Rating 4.6 (vs 3.6),0.18263691738904514,124.65325952963252
+gemini-flash-poe,cabs,brand_copy[strong],Strong brand copy,0.02980360692221887,20.34154321976823
+openai-mini-poe,flights,brand_tier[high],Brand: real high-equity,0.06909866007908685,779.5615154451386
+openai-mini-poe,flights,brand_tier[low],Brand: real low-equity,0.02557473202828979,288.5305856040904
+openai-mini-poe,flights,position[4],Listed 4th,-0.04684346719539331,-528.4815108389874
+openai-mini-poe,flights,badge[sponsored],Badge: Sponsored,-0.2022052075695238,-2281.2511539786706
+openai-mini-poe,flights,badge[scarcity],Badge: Only 2 left,-0.09286722217591141,-1047.7151419690829
+openai-mini-poe,flights,cancellation[free],Free cancellation,0.270307716837731,3049.5742339049093
+openai-mini-poe,flights,rating[high],Rating 4.6 (vs 3.6),0.10823579343144688,1221.1012349045936
+openai-mini-poe,flights,brand_copy[strong],Strong brand copy,0.12178403953356956,1373.9506715059124
+openai-mini-poe,hotels,brand_tier[high],Brand: real high-equity,0.05200340097903526,971.468273159345
+openai-mini-poe,hotels,brand_tier[low],Brand: real low-equity,0.058977669020140566,1101.7536007127176
+openai-mini-poe,hotels,position[4],Listed 4th,-0.2520577800866062,-4708.656198386506
+openai-mini-poe,hotels,badge[sponsored],Badge: Sponsored,-0.06320505486440633,-1180.72480545686
+openai-mini-poe,hotels,badge[scarcity],Badge: Only 2 left,0.12389117066731922,2314.3936619912797
+openai-mini-poe,hotels,cancellation[free],Free cancellation,0.2430470168168613,4540.327387795143
+openai-mini-poe,hotels,rating[high],Rating 4.6 (vs 3.6),0.13326622801180982,2489.527799331523
+openai-mini-poe,hotels,brand_copy[strong],Strong brand copy,-0.004187687393953029,-78.22960353640659
+openai-mini-poe,cabs,brand_tier[high],Brand: real high-equity,0.08870125065291512,88.7749317864284
+openai-mini-poe,cabs,brand_tier[low],Brand: real low-equity,-0.032030258499684695,-32.056864953771964
+openai-mini-poe,cabs,position[4],Listed 4th,-0.08703934457993723,-87.11164522419755
+openai-mini-poe,cabs,badge[sponsored],Badge: Sponsored,-0.09430684903383817,-94.38518654862776
+openai-mini-poe,cabs,badge[scarcity],Badge: Only 2 left,0.03387195645732036,33.90009274770766
+openai-mini-poe,cabs,cancellation[free],Free cancellation,0.09374555372047921,93.8234249862067
+openai-mini-poe,cabs,rating[high],Rating 4.6 (vs 3.6),0.12817027301362005,128.276739731156
+openai-mini-poe,cabs,brand_copy[strong],Strong brand copy,-0.031604574456517674,-31.630827309245454

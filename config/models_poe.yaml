@@ -9,7 +9,7 @@
 # price_in / price_out: USD per million tokens, from Poe's model list.
 
 defaults:
-  max_tokens: 400
+  max_tokens: 4000            # 400 cut off Claude/Gemini/DeepSeek: hidden thinking counts against it on Poe
   temperature: 0
   max_concurrency: 4
   provider: openai_compat

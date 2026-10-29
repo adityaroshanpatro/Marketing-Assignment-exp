@@ -1,0 +1,499 @@
+<title>Study 1B-A Pilot Readout</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (max 980px) for a team readout; charts and tables break out to full column width. */
+:root {
+  --bg: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6f6d68;
+  --rule: #e1e0d9;
+  --axis: #c3c2b7;
+  --accent: #1c5cab;
+  --accent-wash: #e8f0fb;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --good-ink: #006300; --critical-ink: #b02a2a;
+  --ring: rgba(11,11,11,0.10);
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+    --rule: #2c2c2a; --axis: #383835; --accent: #6da7ec; --accent-wash: #16253a;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --good-ink: #0ca30c; --critical-ink: #e66767; --ring: rgba(255,255,255,0.10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+  --rule: #2c2c2a; --axis: #383835; --accent: #6da7ec; --accent-wash: #16253a;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+  --good-ink: #0ca30c; --critical-ink: #e66767; --ring: rgba(255,255,255,0.10);
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 56px; }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4.4vw, 40px); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 24px; font-weight: 650; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--font-data); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 18px; color: var(--ink-2); }
+.num { font-variant-numeric: tabular-nums; }
+code, .mono { font-family: var(--font-data); font-size: 0.88em; }
+
+.banner { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 6px;
+  background: var(--accent-wash); color: var(--ink); border: 1px solid var(--ring); }
+.banner strong { white-space: nowrap; }
+
+.verdict { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; align-items: baseline;
+  padding: 18px 20px; background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; }
+.verdict p { grid-column: 2; color: var(--ink-2); }
+
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.tile { padding: 14px 16px; border-top: 2px solid var(--rule); display: flex; flex-direction: column; gap: 2px; }
+.tile .v { font-size: 30px; font-weight: 650; }
+.tile .l { font-size: 13px; color: var(--ink-2); }
+@media (max-width: 640px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+  padding: 2px 9px 2px 7px; border-radius: 999px; border: 1px solid var(--ring); background: var(--surface); white-space: nowrap; }
+.chip i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.chip.critical i { background: var(--critical); } .chip.serious i { background: var(--serious); }
+.chip.warning i { background: var(--warning); } .chip.good i { background: var(--good); }
+.chip.minor i { background: var(--axis); }
+
+.figure { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.figure .cap { font-size: 13px; color: var(--muted); max-width: none; }
+.scroll { overflow-x: auto; }
+svg text { font-family: var(--font-body); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--ink-2); align-items: center; }
+.legend button { font: inherit; color: inherit; background: none; border: 1px solid var(--ring); border-radius: 999px;
+  padding: 3px 10px 3px 8px; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.legend button[aria-pressed="false"] { opacity: 0.45; }
+.legend button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.legend svg { flex: none; }
+
+.issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.issue { padding: 16px 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.issue .head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.issue p { font-size: 15px; color: var(--ink-2); }
+.issue .fix { font-size: 14px; color: var(--ink); }
+.issue .fix b { font-weight: 600; }
+.issue.wide { grid-column: 1 / -1; }
+@media (max-width: 720px) { .issues { grid-template-columns: minmax(0, 1fr); } }
+
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 13px; }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
+.pass { color: var(--good-ink); font-weight: 600; } .fail { color: var(--critical-ink); font-weight: 600; }
+
+.takeaways { display: flex; flex-direction: column; gap: 8px; padding-left: 20px; margin: 0; max-width: 72ch; }
+.takeaways li { color: var(--ink-2); }
+.takeaways li b { color: var(--ink); font-weight: 600; }
+
+ol.steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; max-width: 72ch; }
+ol.steps li { padding-left: 4px; }
+ol.steps .who { font-size: 13px; color: var(--muted); }
+
+.decisions { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+.decision { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.decision .q { font-weight: 600; }
+.decision .o { color: var(--ink-2); font-size: 15px; }
+@media (max-width: 640px) { .decision { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+details { border: 1px solid var(--ring); border-radius: 8px; background: var(--surface); }
+summary { cursor: pointer; padding: 12px 16px; font-weight: 600; }
+details > div { padding: 0 16px 16px; }
+
+#tip { position: fixed; pointer-events: none; z-index: 20; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--ring); border-radius: 6px; padding: 8px 10px; font-size: 13px; line-height: 1.4;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12); max-width: 260px; }
+#tip .t { font-weight: 600; }
+#tip .m { color: var(--ink-2); }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; display: flex; flex-direction: column; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="eyebrow">IIM Mumbai · Study 1B (experiences &amp; services) · Sub-study 1B-A conjoint · 30 Oct 2026</div>
+  <h1>Study 1B-A pilot readout</h1>
+  <p class="lede">We ran the full pilot on four models to check the instrument before the design freeze. The pipeline works and picks up the signals we expected. The pilot also surfaced three problems that need fixing before the design can be frozen.</p>
+  <div class="banner" role="note"><strong>Pilot only.</strong><span>These numbers test the instrument. They are not findings and should not be quoted as results. Sample size is about one-sixth of the confirmatory design (240 versus 1,500 tasks per model), so confidence intervals are wide.</span></div>
+</header>
+
+<section aria-labelledby="verdict-h">
+  <h2 id="verdict-h">Verdict</h2>
+  <div class="verdict">
+    <span class="chip critical"><i></i>Not ready to freeze</span>
+    <h3>Fix three issues, then re-run the pilot (about $3)</h3>
+    <p>Claude was using live web search on names-only tasks, DeepSeek dropped answers unevenly across conditions, and one fictitious brand name has a real-world sound-alike. All three can be fixed in the config or in <code>design.py</code>, and none needs code changes.</p>
+  </div>
+  <div class="tiles">
+    <div class="tile"><span class="v num">960</span><span class="l">model calls (240 tasks × 4 models)</span></div>
+    <div class="tile"><span class="v num">97.2%</span><span class="l">usable answers overall (933 of 960)</span></div>
+    <div class="tile"><span class="v num">3 of 4</span><span class="l">models pass the 95% usable-answer gate</span></div>
+    <div class="tile"><span class="v num">$3.15</span><span class="l">spent so far, including the failed first attempt</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="ran-h">
+  <h2 id="ran-h">What we ran</h2>
+  <p>Each task shows an agent four options for a flight (Mumbai–Delhi), a hotel (Bengaluru, MG Road, 2 nights) or a cab (Mumbai T2 to Bandra West), and asks it to choose one and rank the rest. Every attribute is randomised independently, so we can estimate what each one is worth to each model.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Item</th><th>Pilot setting</th></tr></thead>
+    <tbody>
+      <tr><td>Tasks</td><td><span class="num">240</span> per model: <span class="num">180</span> full listings (M3, 60 per category) and <span class="num">60</span> names only (M1). Seed <code>101</code>.</td></tr>
+      <tr><td>Dominance tasks</td><td>About 20% of M3 tasks have one option that is best on every stated need and also cheapest.</td></tr>
+      <tr><td>Conditions</td><td>6 personas, 3 prompt wordings, 2 system prompts (SP0 = none, SP1 = "booking assistant acting on behalf of the user").</td></tr>
+      <tr><td>Models (via Poe)</td><td><code>claude-haiku-5.5</code>, <code>gpt-5.4-mini</code>, <code>gemini-3.8-flash</code>, <code>deepseek-v4.1-flash-1017</code></td></tr>
+      <tr><td>Estimation</td><td>Linear probability AMCEs on the M3 random tasks, standard errors clustered by task, Benjamini–Hochberg q-values.</td></tr>
+      <tr><td>Attempts</td><td>Attempt 1 stopped at <span class="num">173</span> calls: a 400-token output limit cut off three models while they were still thinking. Attempt 2 used a 4,000-token limit and completed all <span class="num">960</span> calls. Both files are kept as the audit trail.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="gate-h">
+  <h2 id="gate-h">Usable-answer gate</h2>
+  <p>A model passes when at least 95% of its answers can be parsed into a valid choice. Claude, GPT and Gemini pass. DeepSeek does not.</p>
+  <div class="figure">
+    <div class="scroll"><svg id="gate" role="img" aria-labelledby="gate-title" viewBox="0 0 760 200" style="width:100%;min-width:560px;height:auto"><title id="gate-title">Share of usable answers by model, with the 95% gate</title></svg></div>
+    <p class="cap">Share of 240 calls per model that returned a parseable choice. The dashed line is the 95% gate. DeepSeek's 25 failures used the full 4,000 tokens on thinking and returned nothing.</p>
+  </div>
+</section>
+
+<section aria-labelledby="issues-h">
+  <h2 id="issues-h">What the pilot caught</h2>
+  <div class="issues">
+    <div class="issue wide">
+      <div class="head"><h3>Claude searched the web on names-only tasks</h3><span class="chip critical"><i></i>Critical</span></div>
+      <p>Poe's Claude bot has web search on by default. In <b class="num">41 of 60</b> M1 answers (68%) Claude searched and appended "Learn more" links to Marriott, Kayak, hotels.com and airline sites, and 20 answers said a brand could not be verified or found. M1 is meant to measure what a model knows without looking anything up, and search also reveals which brands are invented. Claude's M1 results are therefore unusable. Its M3 answers show no search (1 of 180 with any sign). Gemini's bot also has search on by default; its answers show no links, so we cannot tell from the text whether it searched.</p>
+      <p class="fix"><b>Fix:</b> set <code>web_search: false</code> for Claude and Gemini in <code>config/models_poe.yaml</code>. The runner already passes these settings to Poe.</p>
+    </div>
+    <div class="issue">
+      <div class="head"><h3>DeepSeek's missing answers are not random</h3><span class="chip serious"><i></i>Serious</span></div>
+      <p>25 of 240 answers (10.4%) came back empty. 22 of the 25 were in the no-system-prompt condition (SP0), and 24 were flights or cabs. Data that is missing unevenly across conditions can bias the estimates.</p>
+      <p class="fix"><b>Fix:</b> raise DeepSeek's limit to 8,000 tokens and re-check the gate.</p>
+    </div>
+    <div class="issue">
+      <div class="head"><h3>Models think by different amounts</h3><span class="chip serious"><i></i>Decision</span></div>
+      <p>At Poe's defaults GPT-5.4 Mini does no reasoning (about 66 output tokens per answer), while Claude and Gemini reason at "medium" (about 860 and 2,070 tokens). Gemini ignored the token limit and used up to 24,489 tokens on one call.</p>
+      <p class="fix"><b>Team decision:</b> keep each model "as deployed" or set reasoning levels equal. Record the choice before the freeze.</p>
+    </div>
+    <div class="issue">
+      <div class="head"><h3>A fictitious brand has a real sound-alike</h3><span class="chip warning"><i></i>Fix in step 3</span></div>
+      <p>Our invented hotel "Velora Suites" is close to a real "Hotel Vellara" in Bangalore, which Claude's search found on hotels.com. That is the kind of sound-alike the brand screening is meant to catch.</p>
+      <p class="fix"><b>Fix:</b> rename it during brand screening, and screen the other seven fictitious names the same way.</p>
+    </div>
+    <div class="issue">
+      <div class="head"><h3>A label error in the analysis report</h3><span class="chip minor"><i></i>Minor</span></div>
+      <p>The model-difference test (HE11) is printed as "F = 11.74, df = 6, p = 0.068". The statistic is actually a chi-square (χ²(6) = 11.74 gives p = 0.068). Only the label is wrong.</p>
+      <p class="fix"><b>Fix:</b> one-line change in <code>analyze.py</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="amce-h">
+  <h2 id="amce-h">What the instrument picks up</h2>
+  <p>Each dot is the change, in percentage points, in the chance an option is chosen when it has that attribute instead of the reference level. Lines are 95% confidence intervals. Reference levels are a fictitious brand, weak copy, median price, all-in price, rating 3.6, few and old reviews, non-refundable, no badge, full JSON-LD, sold direct, and listed first.</p>
+  <div class="figure">
+    <div class="legend" id="amce-legend" aria-label="Show or hide a model"></div>
+    <div class="scroll"><svg id="amce" role="img" aria-labelledby="amce-title" style="width:100%;min-width:640px;height:auto"><title id="amce-title">Pilot AMCEs by attribute and model, with 95% confidence intervals</title></svg></div>
+    <p class="cap">Pilot M3 random tasks only (dominance tasks excluded), 4 options per task. Hover a dot for its value, interval and q-value. Use the buttons to show one model at a time.</p>
+  </div>
+  <ul class="takeaways">
+    <li><b>Free cancellation is the strongest signal for every model</b>, about +21 to +27 points.</li>
+    <li><b>Rating and price move choices in the expected direction.</b> A 4.6 rating adds about 5 to 15 points, a 15% price cut adds about 6 to 11, and a 15% rise takes off about 7 to 11.</li>
+    <li><b>Presentation matters.</b> "Sponsored" badges, prose-only listings and missing attributes all lower an option's chances, by roughly 5 to 11 points.</li>
+    <li><b>Most other effects are not distinguishable from zero</b> at this sample size, as expected. The confirmatory design has about seven times as many M3 tasks per model (1,200 versus 180).</li>
+  </ul>
+  <details>
+    <summary>Table view: all 80 estimates</summary>
+    <div class="scroll"><table id="amce-table"><thead><tr><th>Attribute</th><th>Model</th><th class="r">AMCE (pp)</th><th class="r">95% CI</th><th class="r">q (BH)</th></tr></thead><tbody></tbody></table></div>
+  </details>
+</section>
+
+<section aria-labelledby="brand-h">
+  <h2 id="brand-h">Brand advantage disappears once listings are shown</h2>
+  <p>When agents see only names (M1), real high-equity brands gain a large advantage over our fictitious brands. When they see full listings (M3), that advantage shrinks to about zero, because the listing details take over.</p>
+  <div class="figure">
+    <div class="legend" aria-hidden="true">
+      <span style="display:inline-flex;gap:7px;align-items:center"><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="var(--s1)"/></svg>M1 names only</span>
+      <span style="display:inline-flex;gap:7px;align-items:center"><svg width="12" height="12"><rect x="1" y="1" width="10" height="10" rx="2" fill="var(--s2)"/></svg>M3 full listings</span>
+    </div>
+    <div class="scroll"><svg id="brand" role="img" aria-labelledby="brand-title" style="width:100%;min-width:600px;height:auto"><title id="brand-title">Brand AMCE in names-only versus full-listing tasks, by model</title></svg></div>
+    <p class="cap">Change in choice probability versus a fictitious brand, with 95% confidence intervals. <b>Claude's M1 values are not valid</b>, because Claude searched the web on most of those tasks.</p>
+  </div>
+</section>
+
+<section aria-labelledby="checks-h">
+  <h2 id="checks-h">Sanity checks</h2>
+  <p>Two built-in checks show the agents read the listings properly. On dominance tasks they almost always pick the clearly best option. When asked for the total price, they report the real total, including fees, 93% to 98% of the time, and none reported the pre-fee price.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Model</th><th class="r">Dominance hit rate</th><th class="r">Dominance tasks</th><th class="r">Correct total, all-in prices</th><th class="r">Correct total, fees at checkout</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Haiku 5.5</td><td class="r">97.2%</td><td class="r">36</td><td class="r">96.8%</td><td class="r">93.1%</td></tr>
+      <tr><td>GPT-5.4 Mini</td><td class="r">94.4%</td><td class="r">36</td><td class="r">96.0%</td><td class="r">97.5%</td></tr>
+      <tr><td>Gemini 3.8 Flash</td><td class="r">97.2%</td><td class="r">36</td><td class="r">93.3%</td><td class="r">95.5%</td></tr>
+      <tr><td>DeepSeek V4.1 Flash</td><td class="r">94.3%</td><td class="r">35</td><td class="r">97.6%</td><td class="r">97.5%</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="dec-h">
+  <h2 id="dec-h">Decisions for the team</h2>
+  <div class="decisions">
+    <div class="decision"><div class="q">Reasoning level</div><div class="o">Keep each model at its deployed default, or set an equal reasoning level for all models. Defaults are more realistic; equal levels are easier to compare.</div></div>
+    <div class="decision"><div class="q">Poe or direct provider APIs for the confirmatory run</div><div class="o">Poe is one key and was cheap for the pilot, but it sits between us and the providers and silently ignores some settings (<code>seed</code>, <code>response_format</code>). Direct APIs are cleaner to report in a paper. Poe also has no GPT-6 models yet, so the GPT model would differ.</div></div>
+    <div class="decision"><div class="q">Brand equity tiers</div><div class="o">Confirm the high and low tiers with the Study 1 team (Brand Finance, Kantar or YouGov), and replace Emirates and Singapore Airlines, which look odd on a domestic Mumbai–Delhi route.</div></div>
+    <div class="decision"><div class="q">Where pilot data lives</div><div class="o">Decide whether pilot run files and results go into the shared GitHub repo or stay local.</div></div>
+  </div>
+</section>
+
+<section aria-labelledby="next-h">
+  <h2 id="next-h">Next steps</h2>
+  <ol class="steps">
+    <li>Turn off web search for Claude and Gemini, raise DeepSeek's limit to 8,000 tokens, and fix the HE11 label. <span class="who">Config and one line of code, under an hour.</span></li>
+    <li>Screen all eight fictitious brand names and rename "Velora Suites". Confirm equity tiers and the airline line-up with the Study 1 team. <span class="who">Needs the team.</span></li>
+    <li>Regenerate the pilot tasks if any names change, then re-run the full pilot into a new file. <span class="who">About $3 and one hour of running.</span></li>
+    <li>Check the gate again (≥95% usable for every model) and read raw answers by hand, including a search check on M1.</li>
+    <li>Freeze <code>design.py</code> and pre-register on OSF, then start the confirmatory run (1,500 tasks per model).</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Source: <code>data/pilot/runs_aditya_v2.jsonl</code> (960 calls, 30 Oct 2026) and <code>results/pilot/</code> from <code>analyze.py</code>. Attempt 1: <code>data/pilot/runs_aditya.jsonl</code> (173 calls).</span>
+  <span>Repo: github.com/adityaroshanpatro/Marketing-Assignment-exp · Config: <code>config/models_poe.yaml</code></span>
+</footer>
+
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const DATA = {"amce":[{"model":"claude-haiku-5-5-poe","label":"Brand: real high-equity","amce":0.8,"lo":-8.8,"hi":10.5,"q":0.912},{"model":"claude-haiku-5-5-poe","label":"Brand: real low-equity","amce":-5.1,"lo":-14.2,"hi":4.0,"q":0.521},{"model":"claude-haiku-5-5-poe","label":"Strong brand copy","amce":1.3,"lo":-5.5,"hi":8.1,"q":0.888},{"model":"claude-haiku-5-5-poe","label":"Price -15%","amce":10.3,"lo":1.3,"hi":19.2,"q":0.124},{"model":"claude-haiku-5-5-poe","label":"Price +15%","amce":-9.4,"lo":-16.9,"hi":-2.0,"q":0.083},{"model":"claude-haiku-5-5-poe","label":"Fees shown only at checkout","amce":-4.3,"lo":-10.6,"hi":2.0,"q":0.447},{"model":"claude-haiku-5-5-poe","label":"Rating 4.6 (vs 3.6)","amce":13.2,"lo":6.3,"hi":20.2,"q":0.002},{"model":"claude-haiku-5-5-poe","label":"Many reviews","amce":1.7,"lo":-5.0,"hi":8.4,"q":0.888},{"model":"claude-haiku-5-5-poe","label":"Recent reviews","amce":4.0,"lo":-2.9,"hi":10.9,"q":0.521},{"model":"claude-haiku-5-5-poe","label":"Free cancellation","amce":25.4,"lo":17.4,"hi":33.4,"q":0.0},{"model":"claude-haiku-5-5-poe","label":"Partial refund","amce":6.6,"lo":-0.8,"hi":14.1,"q":0.315},{"model":"claude-haiku-5-5-poe","label":"Badge: Best seller","amce":-1.9,"lo":-11.3,"hi":7.6,"q":0.888},{"model":"claude-haiku-5-5-poe","label":"Badge: Only 2 left","amce":-0.8,"lo":-10.1,"hi":8.5,"q":0.912},{"model":"claude-haiku-5-5-poe","label":"Badge: Sponsored","amce":-5.2,"lo":-14.8,"hi":4.4,"q":0.521},{"model":"claude-haiku-5-5-poe","label":"Key attributes missing","amce":-7.1,"lo":-16.2,"hi":2.0,"q":0.357},{"model":"claude-haiku-5-5-poe","label":"Prose only (vs JSON-LD)","amce":-7.2,"lo":-15.6,"hi":1.2,"q":0.315},{"model":"claude-haiku-5-5-poe","label":"Sold via intermediary","amce":0.2,"lo":-6.8,"hi":7.2,"q":0.95},{"model":"claude-haiku-5-5-poe","label":"Listed 2nd (vs 1st)","amce":-2.7,"lo":-13.7,"hi":8.2,"q":0.888},{"model":"claude-haiku-5-5-poe","label":"Listed 3rd","amce":-3.6,"lo":-14.6,"hi":7.5,"q":0.879},{"model":"claude-haiku-5-5-poe","label":"Listed 4th","amce":-1.3,"lo":-12.2,"hi":9.6,"q":0.912},{"model":"deepseek-poe","label":"Brand: real high-equity","amce":-4.1,"lo":-14.3,"hi":6.2,"q":0.547},{"model":"deepseek-poe","label":"Brand: real low-equity","amce":-10.2,"lo":-19.6,"hi":-0.7,"q":0.305},{"model":"deepseek-poe","label":"Strong brand copy","amce":3.4,"lo":-4.0,"hi":10.9,"q":0.531},{"model":"deepseek-poe","label":"Price -15%","amce":8.7,"lo":-0.9,"hi":18.3,"q":0.305},{"model":"deepseek-poe","label":"Price +15%","amce":-8.2,"lo":-16.7,"hi":0.3,"q":0.305},{"model":"deepseek-poe","label":"Fees shown only at checkout","amce":-5.7,"lo":-13.2,"hi":1.7,"q":0.378},{"model":"deepseek-poe","label":"Rating 4.6 (vs 3.6)","amce":5.3,"lo":-1.9,"hi":12.5,"q":0.379},{"model":"deepseek-poe","label":"Many reviews","amce":3.0,"lo":-3.9,"hi":9.9,"q":0.531},{"model":"deepseek-poe","label":"Recent reviews","amce":3.9,"lo":-3.6,"hi":11.4,"q":0.531},{"model":"deepseek-poe","label":"Free cancellation","amce":26.7,"lo":17.9,"hi":35.5,"q":0.0},{"model":"deepseek-poe","label":"Partial refund","amce":3.7,"lo":-4.2,"hi":11.6,"q":0.531},{"model":"deepseek-poe","label":"Badge: Best seller","amce":-1.8,"lo":-11.8,"hi":8.3,"q":0.808},{"model":"deepseek-poe","label":"Badge: Only 2 left","amce":-1.3,"lo":-11.3,"hi":8.7,"q":0.836},{"model":"deepseek-poe","label":"Badge: Sponsored","amce":-5.3,"lo":-15.4,"hi":4.8,"q":0.531},{"model":"deepseek-poe","label":"Key attributes missing","amce":-8.2,"lo":-17.2,"hi":0.8,"q":0.305},{"model":"deepseek-poe","label":"Prose only (vs JSON-LD)","amce":-4.8,"lo":-14.2,"hi":4.6,"q":0.531},{"model":"deepseek-poe","label":"Sold via intermediary","amce":-3.4,"lo":-11.0,"hi":4.1,"q":0.531},{"model":"deepseek-poe","label":"Listed 2nd (vs 1st)","amce":-0.2,"lo":-12.8,"hi":12.3,"q":0.969},{"model":"deepseek-poe","label":"Listed 3rd","amce":-2.6,"lo":-15.0,"hi":9.9,"q":0.807},{"model":"deepseek-poe","label":"Listed 4th","amce":-9.0,"lo":-19.6,"hi":1.6,"q":0.325},{"model":"gemini-flash-poe","label":"Brand: real high-equity","amce":-1.8,"lo":-11.2,"hi":7.5,"q":0.736},{"model":"gemini-flash-poe","label":"Brand: real low-equity","amce":-6.6,"lo":-15.7,"hi":2.5,"q":0.447},{"model":"gemini-flash-poe","label":"Strong brand copy","amce":2.0,"lo":-5.4,"hi":9.3,"q":0.668},{"model":"gemini-flash-poe","label":"Price -15%","amce":10.5,"lo":2.0,"hi":19.1,"q":0.08},{"model":"gemini-flash-poe","label":"Price +15%","amce":-7.4,"lo":-14.7,"hi":-0.2,"q":0.18},{"model":"gemini-flash-poe","label":"Fees shown only at checkout","amce":-2.6,"lo":-9.2,"hi":4.0,"q":0.602},{"model":"gemini-flash-poe","label":"Rating 4.6 (vs 3.6)","amce":14.6,"lo":7.5,"hi":21.6,"q":0.001},{"model":"gemini-flash-poe","label":"Many reviews","amce":4.0,"lo":-2.7,"hi":10.6,"q":0.533},{"model":"gemini-flash-poe","label":"Recent reviews","amce":3.3,"lo":-3.6,"hi":10.1,"q":0.577},{"model":"gemini-flash-poe","label":"Free cancellation","amce":22.5,"lo":14.3,"hi":30.7,"q":0.0},{"model":"gemini-flash-poe","label":"Partial refund","amce":3.0,"lo":-4.8,"hi":10.8,"q":0.602},{"model":"gemini-flash-poe","label":"Badge: Best seller","amce":-3.2,"lo":-12.8,"hi":6.5,"q":0.609},{"model":"gemini-flash-poe","label":"Badge: Only 2 left","amce":-3.4,"lo":-13.2,"hi":6.3,"q":0.609},{"model":"gemini-flash-poe","label":"Badge: Sponsored","amce":-5.9,"lo":-15.9,"hi":4.1,"q":0.533},{"model":"gemini-flash-poe","label":"Key attributes missing","amce":-11.2,"lo":-19.9,"hi":-2.5,"q":0.079},{"model":"gemini-flash-poe","label":"Prose only (vs JSON-LD)","amce":-6.2,"lo":-14.7,"hi":2.4,"q":0.447},{"model":"gemini-flash-poe","label":"Sold via intermediary","amce":-3.3,"lo":-10.6,"hi":4.0,"q":0.577},{"model":"gemini-flash-poe","label":"Listed 2nd (vs 1st)","amce":6.3,"lo":-4.8,"hi":17.4,"q":0.533},{"model":"gemini-flash-poe","label":"Listed 3rd","amce":1.2,"lo":-9.9,"hi":12.2,"q":0.837},{"model":"gemini-flash-poe","label":"Listed 4th","amce":5.3,"lo":-5.6,"hi":16.2,"q":0.577},{"model":"openai-mini-poe","label":"Brand: real high-equity","amce":6.8,"lo":-2.4,"hi":15.9,"q":0.314},{"model":"openai-mini-poe","label":"Brand: real low-equity","amce":0.6,"lo":-8.2,"hi":9.4,"q":0.887},{"model":"openai-mini-poe","label":"Strong brand copy","amce":2.7,"lo":-4.5,"hi":9.8,"q":0.569},{"model":"openai-mini-poe","label":"Price -15%","amce":6.3,"lo":-2.4,"hi":15.1,"q":0.314},{"model":"openai-mini-poe","label":"Price +15%","amce":-11.1,"lo":-18.3,"hi":-4.0,"q":0.015},{"model":"openai-mini-poe","label":"Fees shown only at checkout","amce":-8.7,"lo":-15.5,"hi":-1.9,"q":0.062},{"model":"openai-mini-poe","label":"Rating 4.6 (vs 3.6)","amce":11.1,"lo":4.2,"hi":18.0,"q":0.015},{"model":"openai-mini-poe","label":"Many reviews","amce":4.4,"lo":-2.2,"hi":10.9,"q":0.325},{"model":"openai-mini-poe","label":"Recent reviews","amce":4.5,"lo":-2.5,"hi":11.5,"q":0.325},{"model":"openai-mini-poe","label":"Free cancellation","amce":20.8,"lo":12.0,"hi":29.6,"q":0.0},{"model":"openai-mini-poe","label":"Partial refund","amce":2.5,"lo":-5.3,"hi":10.2,"q":0.59},{"model":"openai-mini-poe","label":"Badge: Best seller","amce":-1.4,"lo":-11.0,"hi":8.3,"q":0.82},{"model":"openai-mini-poe","label":"Badge: Only 2 left","amce":3.6,"lo":-5.8,"hi":13.1,"q":0.569},{"model":"openai-mini-poe","label":"Badge: Sponsored","amce":-9.6,"lo":-18.7,"hi":-0.5,"q":0.113},{"model":"openai-mini-poe","label":"Key attributes missing","amce":-7.0,"lo":-15.7,"hi":1.8,"q":0.293},{"model":"openai-mini-poe","label":"Prose only (vs JSON-LD)","amce":-9.3,"lo":-17.8,"hi":-0.7,"q":0.113},{"model":"openai-mini-poe","label":"Sold via intermediary","amce":-3.9,"lo":-11.0,"hi":3.3,"q":0.409},{"model":"openai-mini-poe","label":"Listed 2nd (vs 1st)","amce":-4.1,"lo":-15.8,"hi":7.5,"q":0.569},{"model":"openai-mini-poe","label":"Listed 3rd","amce":-7.4,"lo":-18.8,"hi":4.0,"q":0.325},{"model":"openai-mini-poe","label":"Listed 4th","amce":-12.1,"lo":-22.4,"hi":-1.7,"q":0.088}],"brand":[{"model":"claude-haiku-5-5-poe","mode":"M1 names only","term":"brand_tier[high]","amce":39.0,"lo":29.5,"hi":48.6},{"model":"claude-haiku-5-5-poe","mode":"M1 names only","term":"brand_tier[low]","amce":15.9,"lo":5.6,"hi":26.3},{"model":"claude-haiku-5-5-poe","mode":"M3 full listings","term":"brand_tier[high]","amce":0.8,"lo":-8.8,"hi":10.5},{"model":"claude-haiku-5-5-poe","mode":"M3 full listings","term":"brand_tier[low]","amce":-5.1,"lo":-14.2,"hi":4.0},{"model":"deepseek-poe","mode":"M1 names only","term":"brand_tier[high]","amce":31.5,"lo":17.8,"hi":45.2},{"model":"deepseek-poe","mode":"M1 names only","term":"brand_tier[low]","amce":14.8,"lo":3.2,"hi":26.5},{"model":"deepseek-poe","mode":"M3 full listings","term":"brand_tier[high]","amce":-4.1,"lo":-14.3,"hi":6.2},{"model":"deepseek-poe","mode":"M3 full listings","term":"brand_tier[low]","amce":-10.2,"lo":-19.6,"hi":-0.7},{"model":"gemini-flash-poe","mode":"M1 names only","term":"brand_tier[high]","amce":38.5,"lo":28.8,"hi":48.2},{"model":"gemini-flash-poe","mode":"M1 names only","term":"brand_tier[low]","amce":22.8,"lo":13.7,"hi":31.9},{"model":"gemini-flash-poe","mode":"M3 full listings","term":"brand_tier[high]","amce":-1.8,"lo":-11.2,"hi":7.5},{"model":"gemini-flash-poe","mode":"M3 full listings","term":"brand_tier[low]","amce":-6.6,"lo":-15.7,"hi":2.5},{"model":"openai-mini-poe","mode":"M1 names only","term":"brand_tier[high]","amce":39.2,"lo":28.5,"hi":49.8},{"model":"openai-mini-poe","mode":"M1 names only","term":"brand_tier[low]","amce":13.6,"lo":4.8,"hi":22.5},{"model":"openai-mini-poe","mode":"M3 full listings","term":"brand_tier[high]","amce":6.8,"lo":-2.4,"hi":15.9},{"model":"openai-mini-poe","mode":"M3 full listings","term":"brand_tier[low]","amce":0.6,"lo":-8.2,"hi":9.4}]};
+const MODELS = [
+  { id: "claude-haiku-5-5-poe", name: "Claude Haiku 5.5", color: "var(--s1)", shape: "circle" },
+  { id: "openai-mini-poe", name: "GPT-5.4 Mini", color: "var(--s2)", shape: "square" },
+  { id: "gemini-flash-poe", name: "Gemini 3.8 Flash", color: "var(--s3)", shape: "diamond" },
+  { id: "deepseek-poe", name: "DeepSeek V4.1 Flash", color: "var(--s4)", shape: "triangle" },
+];
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => {
+  const n = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  if (parent) parent.appendChild(n);
+  return n;
+};
+const fmt = (v) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+
+function marker(shape, x, y, r, fill, parent) {
+  const ring = { stroke: "var(--surface)", "stroke-width": 2, fill };
+  if (shape === "circle") return el("circle", { cx: x, cy: y, r, ...ring }, parent);
+  if (shape === "square") return el("rect", { x: x - r * 0.9, y: y - r * 0.9, width: r * 1.8, height: r * 1.8, rx: 1.5, ...ring }, parent);
+  if (shape === "diamond") return el("path", { d: `M${x} ${y - r * 1.2}L${x + r * 1.2} ${y}L${x} ${y + r * 1.2}L${x - r * 1.2} ${y}Z`, ...ring }, parent);
+  return el("path", { d: `M${x} ${y - r * 1.15}L${x + r * 1.15} ${y + r * 0.85}L${x - r * 1.15} ${y + r * 0.85}Z`, ...ring }, parent);
+}
+
+const tip = document.getElementById("tip");
+function showTip(evt, html) {
+  tip.innerHTML = html;
+  tip.hidden = false;
+  const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  if (x + w > window.innerWidth - 8) x = evt.clientX - w - pad;
+  if (y + h > window.innerHeight - 8) y = evt.clientY - h - pad;
+  tip.style.left = x + "px";
+  tip.style.top = y + "px";
+}
+const hideTip = () => { tip.hidden = true; };
+
+/* ---------- Gate chart ---------- */
+(function gate() {
+  const svg = document.getElementById("gate");
+  const rows = [
+    ["Claude Haiku 5.5", 100.0, 240], ["GPT-5.4 Mini", 100.0, 240],
+    ["Gemini 3.8 Flash", 99.2, 238], ["DeepSeek V4.1 Flash", 89.6, 215],
+  ];
+  const L = 160, R = 700, top = 18, rowH = 40;
+  const x = (v) => L + (v / 100) * (R - L);
+  [0, 25, 50, 75, 100].forEach((t) => {
+    el("line", { x1: x(t), x2: x(t), y1: top - 6, y2: top + rows.length * rowH, stroke: "var(--rule)", "stroke-width": 1 }, svg);
+    el("text", { x: x(t), y: top + rows.length * rowH + 18, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }, svg).textContent = t + "%";
+  });
+  rows.forEach(([name, v, n], i) => {
+    const y = top + i * rowH + 8;
+    el("text", { x: L - 12, y: y + 15, "text-anchor": "end", "font-size": 14, fill: "var(--ink)" }, svg).textContent = name;
+    const w = x(v) - L;
+    el("path", { d: `M${L} ${y}H${L + w - 4}Q${L + w} ${y} ${L + w} ${y + 4}V${y + 18}Q${L + w} ${y + 22} ${L + w - 4} ${y + 22}H${L}Z`, fill: "var(--s1)" }, svg);
+    const pass = v >= 95;
+    const t = el("text", { x: x(v) + 8, y: y + 16, "font-size": 13, "font-weight": 600, fill: pass ? "var(--ink)" : "var(--critical-ink)" }, svg);
+    t.textContent = v.toFixed(1) + "%" + (pass ? "" : "  below gate");
+    const hit = el("rect", { x: L, y: y - 6, width: R - L + 40, height: 34, fill: "transparent" }, svg);
+    hit.addEventListener("mousemove", (e) => showTip(e, `<div class="t">${name}</div><div class="m">${n} of 240 usable (${v.toFixed(1)}%) · ${pass ? "passes" : "fails"} the 95% gate</div>`));
+    hit.addEventListener("mouseleave", hideTip);
+  });
+  el("line", { x1: x(95), x2: x(95), y1: top - 10, y2: top + rows.length * rowH, stroke: "var(--ink-2)", "stroke-width": 1.5, "stroke-dasharray": "4 3" }, svg);
+  el("text", { x: x(95) - 4, y: top - 10, "text-anchor": "end", "font-size": 12, fill: "var(--ink-2)" }, svg).textContent = "95% gate";
+  svg.setAttribute("viewBox", `0 0 760 ${top + rows.length * rowH + 28}`);
+})();
+
+/* ---------- AMCE dot plot ---------- */
+const GROUPS = [
+  ["Brand", ["Brand: real high-equity", "Brand: real low-equity", "Strong brand copy"]],
+  ["Price and fees", ["Price -15%", "Price +15%", "Fees shown only at checkout"]],
+  ["Reviews", ["Rating 4.6 (vs 3.6)", "Many reviews", "Recent reviews"]],
+  ["Cancellation", ["Free cancellation", "Partial refund"]],
+  ["Badges", ["Badge: Sponsored", "Badge: Best seller", "Badge: Only 2 left"]],
+  ["Information", ["Prose only (vs JSON-LD)", "Key attributes missing"]],
+  ["Channel", ["Sold via intermediary"]],
+  ["List position", ["Listed 2nd (vs 1st)", "Listed 3rd", "Listed 4th"]],
+];
+const SHORT = { "Brand: real high-equity": "Real brand, high equity", "Brand: real low-equity": "Real brand, low equity",
+  "Badge: Sponsored": "Sponsored badge", "Badge: Best seller": "Best seller badge", "Badge: Only 2 left": "Only 2 left badge",
+  "Price -15%": "Price 15% lower", "Price +15%": "Price 15% higher", "Rating 4.6 (vs 3.6)": "Rating 4.6 (vs 3.6)" };
+const shown = new Set(MODELS.map((m) => m.id));
+const byKey = new Map(DATA.amce.map((d) => [d.label + "|" + d.model, d]));
+
+function drawAmce() {
+  const svg = document.getElementById("amce");
+  [...svg.querySelectorAll(":scope > :not(title)")].forEach((n) => n.remove());
+  const W = 760, L = 210, R = 740, rowH = 30, groupH = 26, top = 30;
+  const lo = -30, hi = 40;
+  const x = (v) => L + ((v - lo) / (hi - lo)) * (R - L);
+  const active = MODELS.filter((m) => shown.has(m.id));
+  const offs = active.length === 1 ? [0] : active.map((_, i) => (i - (active.length - 1) / 2) * 6);
+  let y = top;
+  const rows = [];
+  GROUPS.forEach(([g, labels]) => { rows.push({ group: g, y }); y += groupH; labels.forEach((l) => { rows.push({ label: l, y }); y += rowH; }); });
+  const bottom = y + 4;
+  for (let t = lo; t <= hi; t += 10) {
+    el("line", { x1: x(t), x2: x(t), y1: top - 8, y2: bottom, stroke: t === 0 ? "var(--axis)" : "var(--rule)", "stroke-width": t === 0 ? 1.5 : 1 }, svg);
+    el("text", { x: x(t), y: top - 14, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)", class: "num" }, svg).textContent = (t > 0 ? "+" : "") + t;
+  }
+  el("text", { x: R, y: bottom + 20, "text-anchor": "end", "font-size": 12, fill: "var(--muted)" }, svg).textContent = "percentage points →";
+  rows.forEach((r) => {
+    if (r.group) {
+      el("text", { x: 0, y: r.y + 17, "font-size": 11, "font-weight": 600, fill: "var(--muted)", "letter-spacing": "0.06em" }, svg).textContent = r.group.toUpperCase();
+      return;
+    }
+    const cy = r.y + rowH / 2;
+    el("text", { x: L - 14, y: cy + 5, "text-anchor": "end", "font-size": 14, fill: "var(--ink)" }, svg).textContent = SHORT[r.label] || r.label;
+    active.forEach((m, i) => {
+      const d = byKey.get(r.label + "|" + m.id);
+      if (!d) return;
+      const yy = cy + offs[i];
+      const g = el("g", {}, svg);
+      el("line", { x1: x(Math.max(lo, d.lo)), x2: x(Math.min(hi, d.hi)), y1: yy, y2: yy, stroke: m.color, "stroke-width": 2, "stroke-linecap": "round", opacity: 0.55 }, g);
+      marker(m.shape, x(d.amce), yy, 4.5, m.color, g);
+      const hit = el("rect", { x: x(Math.max(lo, d.lo)) - 6, y: yy - 4, width: Math.max(16, x(Math.min(hi, d.hi)) - x(Math.max(lo, d.lo)) + 12), height: 8, fill: "transparent" }, g);
+      const html = `<div class="t">${SHORT[r.label] || r.label}</div><div>${m.name}: <b>${fmt(d.amce)} pp</b></div><div class="m">95% CI ${fmt(d.lo)} to ${fmt(d.hi)} · q = ${d.q < 0.001 ? "<0.001" : d.q.toFixed(3)}</div>`;
+      hit.addEventListener("mousemove", (e) => showTip(e, html));
+      hit.addEventListener("mouseleave", hideTip);
+    });
+  });
+  svg.setAttribute("viewBox", `0 0 ${W} ${bottom + 30}`);
+}
+
+(function legend() {
+  const box = document.getElementById("amce-legend");
+  MODELS.forEach((m) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.id = "toggle-" + m.id;
+    b.setAttribute("aria-pressed", "true");
+    const s = el("svg", { width: 14, height: 14, viewBox: "0 0 14 14" });
+    marker(m.shape, 7, 7, 4.5, m.color, s);
+    b.appendChild(s);
+    b.appendChild(document.createTextNode(m.name));
+    b.addEventListener("click", () => {
+      if (shown.has(m.id) && shown.size === 1) return;
+      shown.has(m.id) ? shown.delete(m.id) : shown.add(m.id);
+      b.setAttribute("aria-pressed", String(shown.has(m.id)));
+      drawAmce();
+    });
+    box.appendChild(b);
+  });
+  const all = document.createElement("button");
+  all.type = "button";
+  all.id = "toggle-all";
+  all.textContent = "Show all";
+  all.addEventListener("click", () => {
+    MODELS.forEach((m) => shown.add(m.id));
+    box.querySelectorAll("button[aria-pressed]").forEach((b) => b.setAttribute("aria-pressed", "true"));
+    drawAmce();
+  });
+  box.appendChild(all);
+})();
+drawAmce();
+
+(function amceTable() {
+  const tb = document.querySelector("#amce-table tbody");
+  GROUPS.flatMap(([, ls]) => ls).forEach((l) => MODELS.forEach((m) => {
+    const d = byKey.get(l + "|" + m.id);
+    if (!d) return;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${SHORT[l] || l}</td><td>${m.name}</td><td class="r">${fmt(d.amce)}</td><td class="r">${fmt(d.lo)} to ${fmt(d.hi)}</td><td class="r">${d.q < 0.001 ? "<0.001" : d.q.toFixed(3)}</td>`;
+    tb.appendChild(tr);
+  }));
+})();
+
+/* ---------- Brand M1 vs M3 ---------- */
+(function brand() {
+  const svg = document.getElementById("brand");
+  const W = 760, L = 240, R = 740, top = 30, rowH = 30, gap = 14;
+  const lo = -25, hi = 55;
+  const x = (v) => L + ((v - lo) / (hi - lo)) * (R - L);
+  const get = (m, mode, term) => DATA.brand.find((d) => d.model === m && d.mode.startsWith(mode) && d.term === term);
+  let y = top;
+  const rows = [];
+  MODELS.forEach((m) => {
+    rows.push({ m, term: "brand_tier[high]", tier: "high equity", y }); y += rowH;
+    rows.push({ m, term: "brand_tier[low]", tier: "low equity", y }); y += rowH + gap;
+  });
+  const bottom = y - gap + 4;
+  for (let t = -20; t <= 50; t += 10) {
+    el("line", { x1: x(t), x2: x(t), y1: top - 8, y2: bottom, stroke: t === 0 ? "var(--axis)" : "var(--rule)", "stroke-width": t === 0 ? 1.5 : 1 }, svg);
+    el("text", { x: x(t), y: top - 14, "text-anchor": "middle", "font-size": 12, fill: "var(--muted)" }, svg).textContent = (t > 0 ? "+" : "") + t;
+  }
+  rows.forEach((r, i) => {
+    const cy = r.y + rowH / 2;
+    if (i % 2 === 0) {
+      const t = el("text", { x: 0, y: cy + 5, "font-size": 14, "font-weight": 600, fill: "var(--ink)" }, svg);
+      t.textContent = r.m.name + (r.m.id.startsWith("claude") ? " *" : "");
+    }
+    el("text", { x: L - 14, y: cy + 5, "text-anchor": "end", "font-size": 13, fill: "var(--ink-2)" }, svg).textContent = r.tier;
+    const a = get(r.m.id, "M1", r.term), b = get(r.m.id, "M3", r.term);
+    el("line", { x1: x(a.amce), x2: x(b.amce), y1: cy, y2: cy, stroke: "var(--axis)", "stroke-width": 2 }, svg);
+    [[a, "M1 names only", "var(--s1)", "circle", -5], [b, "M3 full listings", "var(--s2)", "square", 5]].forEach(([d, label, c, shape, dy]) => {
+      el("line", { x1: x(d.lo), x2: x(d.hi), y1: cy + dy, y2: cy + dy, stroke: c, "stroke-width": 2, opacity: 0.5, "stroke-linecap": "round" }, svg);
+      marker(shape, x(d.amce), cy + dy, 5, c, svg);
+      const hit = el("rect", { x: x(d.lo) - 6, y: cy + dy - 5, width: x(d.hi) - x(d.lo) + 12, height: 10, fill: "transparent" }, svg);
+      const html = `<div class="t">${r.m.name}, real ${r.tier} brand</div><div>${label}: <b>${fmt(d.amce)} pp</b></div><div class="m">95% CI ${fmt(d.lo)} to ${fmt(d.hi)}${r.m.id.startsWith("claude") && dy < 0 ? "<br>Not valid: web search was on" : ""}</div>`;
+      hit.addEventListener("mousemove", (e) => showTip(e, html));
+      hit.addEventListener("mouseleave", hideTip);
+    });
+    const a1 = el("text", { x: x(a.amce), y: cy - 12, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-2)", class: "num" }, svg);
+    a1.textContent = fmt(a.amce);
+  });
+  el("text", { x: 0, y: bottom + 22, "font-size": 12, fill: "var(--muted)" }, svg).textContent = "* M1 not valid for Claude: web search was on";
+  svg.setAttribute("viewBox", `0 0 ${W} ${bottom + 30}`);
+})();
+</script>

@@ -1,0 +1,5 @@
+model_name,calls,usable,errors
+claude-haiku-5-5-poe,240,1.0,0.0
+deepseek-poe,240,0.8958333333333334,0.0
+gemini-flash-poe,240,0.9916666666666667,0.0
+openai-mini-poe,240,1.0,0.0
