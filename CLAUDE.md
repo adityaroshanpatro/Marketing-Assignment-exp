@@ -6,7 +6,7 @@ randomised conjoint: LLM agents choose 1 of 4 flight, hotel or cab options whose
 price, fees, reviews, cancellation terms, badges, sales channel, information format
 and list position are randomised independently. The analysis estimates what each
 signal is worth to each model (AMCEs in percentage points and rupee equivalents).
-The full design rationale is in the team's framework doc; README.md has the run steps.
+The full design rationale is in the team's framework doc; README.md has the run steps; SETUP_DESKTOP.md covers first-time setup in the Claude desktop app.
 
 ## Files
 - `design.py`: brands, personas, attribute levels, prompt wordings. The only place to change the experiment.
