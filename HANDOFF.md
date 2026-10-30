@@ -23,7 +23,7 @@ original claude.ai conversation, so no context is lost.
    analysis. Dry run with 2 simulated agents recovered 24/24 planted weights inside 95%
    CIs. Re-verified on a fresh clone from GitHub.
 4. **Design choices in the kit:** 4 options per task; 20% dominance tasks (one option best
-   on every stated need and cheapest); M1 names-only and M3 full-listing modes; 3 prompt
+   on every stated need and cheapest; see 4a: other attributes are not yet held equal); M1 names-only and M3 full-listing modes; 3 prompt
    paraphrases; 2 system-prompt levels; 6 personas; categories flights (Mumbai–Delhi),
    hotels (Bengaluru, MG Road, 2 nights), cabs (Mumbai T2 → Bandra West); calls interleaved
    across models; standard errors clustered by task.
@@ -39,8 +39,31 @@ original claude.ai conversation, so no context is lost.
 3. [ ] Screen the fictitious brand names in `design.py` (no web presence, no sound-alikes) and
        confirm the high/low equity tiers with the Study 1 team (Brand Finance / Kantar /
        YouGov). Emirates/Singapore Airlines sit oddly on a domestic route; swap or change route.
-4. [ ] Pilot: `generate.py --m3 60 --m1 20 --seed 101`, estimate, run, analyse. Gate: usable
+4. [x] Pilot: `generate.py --m3 60 --m1 20 --seed 101`, estimate, run, analyse. Gate: usable
        answers ≥ 95% per model; read raw answers by hand. Pilot numbers are not findings.
+       Done 29–30 Oct 2026 via Poe (`config/models_poe.yaml`, `data/pilot/runs_aditya_v2.jsonl`,
+       `results/pilot/`). DeepSeek failed the gate (89.6%). Fixes below come first.
+4a. [ ] Pilot fixes (after the team meeting; then re-run the pilot into a new runs file):
+       - **Dominance tasks are not strictly dominant.** `generate.py` `build_m3` makes the
+         dominant option best only on `DOMINANCE_BASE` + persona priorities + price; other
+         attributes (stops, checked bag, on-time, departure, channel, fees, ETA, vehicle…)
+         stay random, so the "dominant" option can be worse on them. In task
+         `1B-A-FLT-S3-M3-0003` the "dominant" Emirates option was one-stop, no bag,
+         intermediary; all four models picked a non-stop, bag-included, direct SpiceJet
+         option (4 of 6 pilot misses). Fix: give the dominant option the best level on every
+         attribute, or hold the non-priority attributes equal across all four options.
+       - **Brand fit, not just fame.** M1 pick rates show models judge brand–need fit: Air
+         India 95%, IndiGo 92% vs Emirates 10%, Singapore Airlines 17% (international
+         carriers, domestic route); Rapido 0% (known for bike taxis; airport trip with
+         luggage). Replace misfit high-equity brands, re-confirm tiers, and add a
+         brand-level (not only tier-level) analysis.
+       - Rename Velora Suites (sound-alike) and screen all fictitious names (see step 3).
+       - Turn web search off for Claude and Gemini on Poe (`extra_body`), raise DeepSeek
+         `max_tokens` to 8000.
+       - `analyze.py` labels the HE11 chi-square Wald statistic as "F"; relabel.
+       - Team decision: reasoning-effort levels, and Poe vs direct provider APIs.
+       - Worth pre-registering from the pilot (not findings): brand × rating (a low rating
+         hurt fictitious brands far more than real ones) and brand × price.
 5. [ ] Freeze `design.py`; pre-register on OSF (hypotheses, sample sizes, analysis).
 6. [ ] Confirmatory: `--m3 400 --m1 100 --seed 2026` (1,500 tasks/model) + stability arm
        (150 tasks × 5 reps); add flagship and more open-weight models; two-week drift rerun.
